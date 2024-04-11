@@ -1,7 +1,7 @@
 import { Offer, HousingType, ConvenienceType, UserType } from '../types/index.js';
 
 export function createOffer(offerData: string): Offer {
-  const [title, description, postDate, sityName, sityLatitude, sityLongitude, imagePreview, photosHousing, isPremium, isFavorite, rating, type, numberRooms, numberGuests, price, conveniences, firstname, email, avatarPath, password, usertype] = offerData.replace('\n', '').split('\t');
+  const [title, description, postDate, cityName, cityLatitude, cityLongitude, imagePreview, photosHousing, isPremium, isFavorite, rating, type, numberRooms, numberGuests, price, conveniences, firstname, email, avatarPath, password, usertype] = offerData.replace('\n', '').split('\t');
 
   const author = {
     firstname,
@@ -11,17 +11,17 @@ export function createOffer(offerData: string): Offer {
     type: UserType[usertype as 'Regular' | 'Pro']
   };
 
-  const sity = {
-    name: sityName,
-    latitude: Number.parseFloat(sityLatitude),
-    longitude: Number.parseFloat(sityLongitude),
+  const city = {
+    name: cityName,
+    latitude: Number.parseFloat(cityLatitude),
+    longitude: Number.parseFloat(cityLongitude),
   };
 
   return {
     title,
     description,
     postDate: new Date(postDate),
-    sity,
+    city,
     imagePreview,
     photosHousing: photosHousing.split(';'),
     isPremium: isPremium === 'true',
