@@ -47,13 +47,13 @@ export class ImportCommand implements Command {
       password: DEFAULT_USER_PASSWORD
     }, this.salt);
 
-    const city = await this.cityService.findByCityName(offer.city.name);
+    const city = await this.cityService.findByCityNameOrCreate(offer.city.name, offer.city);
 
     await this.offerService.create({
       title: offer.title,
       description: offer.description,
       postDate: offer.postDate,
-      city: city?.id,
+      cityId: city.id,
       imagePreview: offer.imagePreview,
       photosHousing: offer.photosHousing,
       isPremium: offer.isPremium,
@@ -64,7 +64,7 @@ export class ImportCommand implements Command {
       numberGuests: offer.numberGuests,
       price: offer.price,
       conveniences: offer.conveniences,
-      author: author.id,
+      authorId: author.id,
     });
 
   }

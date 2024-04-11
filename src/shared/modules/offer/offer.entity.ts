@@ -26,7 +26,7 @@ export class OfferEntity extends defaultClasses.TimeStamps {
     ref: CityEntity,
     required: true,
   })
-  public city: Ref<CityEntity>;
+  public cityId: Ref<CityEntity>;
 
   @prop()
   public imagePreview!: string;
