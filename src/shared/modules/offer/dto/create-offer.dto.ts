@@ -1,10 +1,9 @@
-import { City } from './city.type.js';
-import { HousingType } from './housing-type.enum.js';
-import { ConvenienceType } from './convenience-type.enum.js';
-import { User } from './user.type.js';
-import { Comment } from './comment.type.js';
+import { City } from '../../../types/city.type.js';
+import { HousingType } from '../../../types/housing-type.enum.js';
+import { ConvenienceType } from '../../../types/convenience-type.enum.js';
+import { User } from '../../../types/user.type.js';
 
-export type Offer = {
+export class CreateOfferDto {
   title: string;
   description: string;
   postDate: Date;
@@ -20,5 +19,4 @@ export type Offer = {
   price: number;
   conveniences: ConvenienceType[];
   author: User;
-  comments: Comment[];
 }
