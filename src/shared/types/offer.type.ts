@@ -1,4 +1,4 @@
-import { Sity } from './sity.type.js';
+import { City } from './city.type.js';
 import { HousingType } from './housing-type.enum.js';
 import { ConvenienceType } from './convenience-type.enum.js';
 import { User } from './user.type.js';
@@ -8,13 +8,13 @@ export type Offer = {
   title: string;
   description: string;
   postDate: Date;
-  sity: Sity;
+  city: City;
   imagePreview: string;
   photosHousing: string[];
   isPremium: boolean;
   isFavorite: boolean;
   rating: number;
-  type: HousingType
+  type: HousingType;
   numberRooms: number;
   numberGuests: number;
   price: number;
