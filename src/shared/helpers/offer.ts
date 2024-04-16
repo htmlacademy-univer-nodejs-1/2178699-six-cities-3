@@ -1,7 +1,7 @@
-import { Offer, HousingType, ConvenienceType, UserType } from '../types/index.js';
+import { Offer, Type, Good, UserType } from '../types/index.js';
 
 export function createOffer(offerData: string): Offer {
-  const [title, description, postDate, cityName, cityLatitude, cityLongitude, imagePreview, photosHousing, isPremium, isFavorite, rating, type, numberRooms, numberGuests, price, conveniences, firstname, email, avatarPath, password, usertype] = offerData.replace('\n', '').split('\t');
+  const [title, description, postDate, cityName, cityLatitude, cityLongitude, imagePreview, photosHousing, isPremium, rating, type, numberRooms, numberGuests, price, conveniences, firstname, email, avatarPath, password, usertype] = offerData.replace('\n', '').split('\t');
 
   const author = {
     firstname,
@@ -13,8 +13,10 @@ export function createOffer(offerData: string): Offer {
 
   const city = {
     name: cityName,
-    latitude: Number.parseFloat(cityLatitude),
-    longitude: Number.parseFloat(cityLongitude),
+    location: {
+      latitude: Number.parseFloat(cityLatitude),
+      longitude: Number.parseFloat(cityLongitude),
+    }
   };
 
   return {
@@ -22,21 +24,25 @@ export function createOffer(offerData: string): Offer {
     description,
     postDate: new Date(postDate),
     city,
+    location: {
+      latitude: Number.parseFloat(cityLatitude),
+      longitude: Number.parseFloat(cityLongitude),
+    },
     imagePreview,
     photosHousing: photosHousing.split(';'),
     isPremium: isPremium === 'true',
-    isFavorite: isFavorite === 'true',
     rating: Number.parseInt(rating, 10),
-    type: HousingType[type as 'Apartment' | 'House' | 'Room' | 'Hotel'],
+    type: Type[type as 'Apartment' | 'House' | 'Room' | 'Hotel'],
     numberRooms: Number.parseInt(numberRooms, 10),
     numberGuests: Number.parseInt(numberGuests, 10),
     price: Number.parseInt(price, 10),
     conveniences: conveniences
       .split(';')
       .map((convenience) =>
-        ConvenienceType[convenience as 'Breakfast' | 'LaptopFriendlyWorkspace' | 'BabySeat' | 'Washer' | 'Towels' | 'Fridge']
+        Good[convenience as 'Breakfast' | 'LaptopFriendlyWorkspace' | 'BabySeat' | 'Washer' | 'Towels' | 'Fridge']
       ),
     author,
-    comments: []
+    comments: [],
+    favoriteUsers: []
   };
 }
