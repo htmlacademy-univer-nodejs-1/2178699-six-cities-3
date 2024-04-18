@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { OfferGenerator } from './offer-generator.interface.js';
-import { MockServerData, HousingType, ConvenienceType, UserType } from '../../types/index.js';
+import { MockServerData, Type, Good, UserType } from '../../types/index.js';
 import { generateRandomValue, getRandomItem, getRandomItems } from '../../helpers/index.js';
 
 const FIRST_WEEK_DAY = 1;
@@ -33,11 +33,11 @@ export class TSVOfferGenerator implements OfferGenerator {
     const isPremium = Boolean(generateRandomValue(0, 1));
     const isFavorite = Boolean(generateRandomValue(0, 1));
     const rating = generateRandomValue(MIN_RATING, MAX_RATING).toString();
-    const type = getRandomItem([HousingType.Apartment, HousingType.Hotel, HousingType.House, HousingType.Room]);
+    const type = getRandomItem([Type.Apartment, Type.Hotel, Type.House, Type.Room]);
     const numberRooms = generateRandomValue(MIN_NUMBER_ROOMS, MAX_NUMBER_ROOMS).toString();
     const numberGuests = generateRandomValue(MIN_NUMBER_GUESTS, MAX_NUMBER_GUESTS).toString();
     const price = generateRandomValue(MIN_PRICE, MAX_PRICE).toString();
-    const conveniences = getRandomItems<string>([ConvenienceType.AirConditioning, ConvenienceType.BabySeat, ConvenienceType.Breakfast, ConvenienceType.Fridge, ConvenienceType.LaptopFriendlyWorkspace, ConvenienceType.Towels, ConvenienceType.Washer]).join(';');
+    const conveniences = getRandomItems<string>([Good.AirConditioning, Good.BabySeat, Good.Breakfast, Good.Fridge, Good.LaptopFriendlyWorkspace, Good.Towels, Good.Washer]).join(';');
     const userFirstname = getRandomItem(this.mockData.userFirstnames);
     const userEmail = getRandomItem(this.mockData.userEmails);
     const userAvatarPath = getRandomItem(this.mockData.userAvatarPaths);

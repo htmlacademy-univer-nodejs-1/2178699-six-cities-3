@@ -1,5 +1,5 @@
 import { defaultClasses, getModelForClass, modelOptions, prop, Ref } from '@typegoose/typegoose';
-import { HousingType, ConvenienceType } from '../../types/index.js';
+import { Type, Good } from '../../types/index.js';
 import { CityEntity } from '../city/index.js';
 import { UserEntity } from '../user/index.js';
 
@@ -40,16 +40,13 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   public isPremium!: boolean;
 
   @prop()
-  public isFavorite!: boolean;
-
-  @prop()
   public rating!: number;
 
   @prop({
     type: () => String,
-    enum: HousingType
+    enum: Type
   })
-  public type!: HousingType;
+  public type!: Type;
 
   @prop()
   public numberRooms!: number;
@@ -62,15 +59,23 @@ export class OfferEntity extends defaultClasses.TimeStamps {
 
   @prop({
     type: () => String,
-    enum: ConvenienceType
+    enum: Good
   })
-  public conveniences!: ConvenienceType[];
+  public conveniences!: Good[];
 
   @prop({
     ref: UserEntity,
     required: true
   })
   public authorId!: Ref<UserEntity>;
+
+  @prop({
+    ref: UserEntity,
+    required: true,
+    default: [],
+    _id: false
+  })
+  public favoriteUsers!: Ref<UserEntity>[];
 }
 
 export const OfferModel = getModelForClass(OfferEntity);
