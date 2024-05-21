@@ -13,9 +13,6 @@ export class CreateOfferDto {
 
   public city: City;
 
-  @MaxLength(256, { message: CreateOfferValidationMessage.previewImage.maxLength })
-  public previewImage: string;
-
   @IsBoolean({ message: CreateOfferValidationMessage.isPremium.invalid })
   public isPremium: boolean;
 
