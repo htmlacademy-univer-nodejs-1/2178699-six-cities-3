@@ -46,4 +46,6 @@ export class CreateOfferDto {
   @ArrayMinSize(6, { message: CreateOfferValidationMessage.images.minLength })
   @ArrayMaxSize(6, { message: CreateOfferValidationMessage.images.maxLength })
   public images: string[];
+
+  public userId: string;
 }
