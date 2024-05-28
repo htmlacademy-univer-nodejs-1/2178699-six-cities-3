@@ -1,8 +1,10 @@
 import { inject, injectable } from 'inversify';
 import { Request, Response } from 'express';
 import {
-  BaseController, DocumentExistsMiddleware,
-  HttpMethod, PrivateRouteMiddleware,
+  BaseController,
+  DocumentExistsMiddleware,
+  HttpMethod,
+  PrivateRouteMiddleware,
   HttpError,
   ValidateDtoMiddleware,
   ValidateObjectIdMiddleware,
@@ -19,12 +21,13 @@ import { CommentRdo, CommentService } from '../comment/index.js';
 import { ParamOfferId } from './type/param-offerid.type.js';
 import { CreateOfferRequest } from './type/create-offer-request.type.js';
 
+
 @injectable()
 export class OfferController extends BaseController {
   constructor(
     @inject(Component.Logger) protected readonly logger: Logger,
     @inject(Component.OfferService) private readonly offerService: OfferService,
-    @inject(Component.CommentService) private readonly commentService: CommentService
+    @inject(Component.CommentService) private readonly commentService: CommentService,
   ) {
     super(logger);
 
